@@ -1,9 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
-const ACCELERATION = 600
-const FRICTION = 1000
-const JUMP_VELOCITY = -300.0
+@export var movement_data : PlayerMovementData
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -20,7 +17,10 @@ func _physics_process(delta):
 	if input_axis != 0:
 		handle_acceleration(input_axis, delta)
 	else:
-		apply_friction(delta)
+		if is_on_floor():
+			apply_friction(delta)
+		else:
+			apply_air_resistance(delta)
 	
 	update_animations(input_axis)
 	
@@ -30,25 +30,32 @@ func _physics_process(delta):
 	if just_left_ledge:
 		coyote_jump_timer.start()
 
+	# TEST: change movement data
+	if Input.is_action_just_pressed("ui_accept"):
+		movement_data = load("res://FasterMovementData.tres")
+
 func apply_gravity(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity * movement_data.gravity_scale * delta
 
 func handle_jump():
 	# Handle jump.
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("ui_up"):
-			velocity.y = JUMP_VELOCITY
+			velocity.y = movement_data.jump_velocity
 	if not is_on_floor():
-		if Input.is_action_just_released("ui_up") and velocity.y < JUMP_VELOCITY / 2:
-			velocity.y = JUMP_VELOCITY / 2
+		if Input.is_action_just_released("ui_up") and velocity.y < movement_data.jump_velocity / 2:
+			velocity.y = movement_data.jump_velocity / 2
 
 func apply_friction(delta):
-	velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+	velocity.x = move_toward(velocity.x, 0, movement_data.friction * delta)
+
+func apply_air_resistance(delta):
+	velocity.x = move_toward(velocity.x, 0, movement_data.air_resistance * delta)
 
 func handle_acceleration(input_axis, delta):
-	velocity.x = move_toward(velocity.x, input_axis * SPEED, ACCELERATION * delta)
+	velocity.x = move_toward(velocity.x, input_axis * movement_data.speed, movement_data.acceleration * delta)
 
 func update_animations(input_axis):
 	if input_axis != 0:

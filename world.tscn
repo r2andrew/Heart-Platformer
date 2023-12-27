@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://byrwoi1qsesbl"]
+[gd_scene load_steps=5 format=3 uid="uid://byrwoi1qsesbl"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_iucsb"]
 [ext_resource type="PackedScene" uid="uid://dhw1hchew14iq" path="res://player.tscn" id="2_v3oin"]
+[ext_resource type="PackedScene" uid="uid://vc3d84u3aty8" path="res://spikes.tscn" id="3_bs6ex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bic5"]
 size = Vector2(10, 74)
@@ -10,9 +11,10 @@ size = Vector2(10, 74)
 script = ExtResource("1_iucsb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 16, 0, 16, 120, 56, 136, 80, 136, 112, 120, 136, 120, 136, 152, 168, 152, 168, 120, 200, 120, 224, 136, 248, 136, 260, 124, 304, 112, 304, 0, 320, 0, 320, 184, 0, 184)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 120, 56, 136, 80, 136, 112, 120, 136, 120, 136, 152, 168, 152, 168, 120, 200, 120, 224, 136, 267, 136, 267, 148, 304, 148, 304, 136, 304, 112, 304, 0, 320, 0, 320, 184, 0, 184)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
 
@@ -20,6 +22,7 @@ polygon = PackedVector2Array(0, 0, 16, 0, 16, 120, 56, 136, 80, 136, 112, 120, 1
 position = Vector2(80, 120)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(261, 45)
@@ -30,3 +33,15 @@ offset_left = 256.0
 offset_top = 8.0
 offset_right = 266.0
 offset_bottom = 82.0
+
+[node name="Spikes" parent="." instance=ExtResource("3_bs6ex")]
+position = Vector2(136, 152)
+
+[node name="Spikes2" parent="." instance=ExtResource("3_bs6ex")]
+position = Vector2(152, 152)
+
+[node name="Spikes3" parent="." instance=ExtResource("3_bs6ex")]
+position = Vector2(269, 148)
+
+[node name="Spikes4" parent="." instance=ExtResource("3_bs6ex")]
+position = Vector2(286, 148)

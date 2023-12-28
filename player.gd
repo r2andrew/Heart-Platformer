@@ -13,6 +13,17 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
 	
+	# TEST: change movement data
+	if Input.is_action_just_pressed("ui_accept"):
+		movement_data = load("res://FasterMovementData.tres")
+		
+	just_wall_jumped = false
+	
+	# TEST: go to spawn
+	if Input.is_action_just_pressed("ui_page_up"):
+		global_position = starting_position
+		
+	
 	apply_gravity(delta)
 	
 	if is_on_wall_only():
@@ -40,12 +51,6 @@ func _physics_process(delta):
 	var just_left_ledge = was_on_floor and not is_on_floor() and velocity.y >= 0
 	if just_left_ledge:
 		coyote_jump_timer.start()
-
-	# TEST: change movement data
-	if Input.is_action_just_pressed("ui_accept"):
-		movement_data = load("res://FasterMovementData.tres")
-		
-	just_wall_jumped = false
 
 func apply_gravity(delta):
 	# Add the gravity.
@@ -96,7 +101,5 @@ func update_animations(input_axis):
 	if not is_on_floor():
 		animated_sprite_2d.play("jump")
 	
-
-
 func _on_hazard_detector_area_entered(area):
 	global_position = starting_position

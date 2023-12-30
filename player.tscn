@@ -88,6 +88,7 @@ size = Vector2(12, 14)
 collision_layer = 2
 floor_constant_speed = true
 floor_snap_length = 3.0
+safe_margin = 0.1
 script = ExtResource("1_k82xx")
 movement_data = ExtResource("2_1lkom")
 
@@ -106,6 +107,7 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -32)
+process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 

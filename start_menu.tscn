@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfgcu5gseslnp"]
+[gd_scene load_steps=2 format=3 uid="uid://bfgcu5gseslnp"]
 
 [ext_resource type="Script" path="res://start_menu.gd" id="1_6hjgd"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kxse7"]
 
 [node name="StartMenu" type="CenterContainer"]
 anchors_preset = 15
@@ -15,16 +13,14 @@ script = ExtResource("1_6hjgd")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_kxse7")
-
 [node name="StartGame" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "Start Game"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "Quit"
 

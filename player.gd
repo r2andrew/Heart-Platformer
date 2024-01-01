@@ -46,8 +46,6 @@ func _physics_process(delta):
 		else:
 			apply_air_resistance(delta)
 	
-	update_animations(input_axis)
-	
 	var was_on_floor = is_on_floor()
 	
 	var was_on_wall = is_on_wall_only()
@@ -65,8 +63,10 @@ func _physics_process(delta):
 	var just_left_wall = was_on_wall and not is_on_wall_only()
 	if just_left_wall:
 		wall_jump_timer.start()
+		
+	update_animations(input_axis)
 	
-
+	
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * movement_data.gravity_scale * delta
@@ -81,7 +81,7 @@ func handle_wall_jump():
 func handle_jump():
 	if is_on_floor(): air_jump = true
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_pressed("jump"):
 			velocity.y = movement_data.jump_velocity
 	elif not is_on_floor():
 		if Input.is_action_just_released("jump") and velocity.y < movement_data.jump_velocity / 2:

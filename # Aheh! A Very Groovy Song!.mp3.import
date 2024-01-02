@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cogooyum5afg0"
+path="res://.godot/imported/# Aheh! A Very Groovy Song!.mp3-7d2035ed6759a05b3a830ae5ea226975.mp3str"
+
+[deps]
+
+source_file="res://# Aheh! A Very Groovy Song!.mp3"
+dest_files=["res://.godot/imported/# Aheh! A Very Groovy Song!.mp3-7d2035ed6759a05b3a830ae5ea226975.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

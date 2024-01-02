@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bynfwngfbfs7h"]
+
+[ext_resource type="AudioStream" uid="uid://cogooyum5afg0" path="res://# Aheh! A Very Groovy Song!.mp3" id="1_b4iqv"]
+[ext_resource type="Script" path="res://music.gd" id="2_yr0sy"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+process_mode = 3
+stream = ExtResource("1_b4iqv")
+volume_db = -12.18
+script = ExtResource("2_yr0sy")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwmvcljevgglg"]
+
+[ext_resource type="Script" path="res://Events.gd" id="1_303gs"]
+[ext_resource type="AudioStream" uid="uid://d2f1i7ocbiblg" path="res://smw_lemmy_wendy_correct.wav" id="2_c5w2o"]
+
+[node name="Events" type="Node"]
+process_mode = 3
+script = ExtResource("1_303gs")
+
+[node name="collectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_c5w2o")

@@ -13,7 +13,7 @@ var start_level_msec = 0.0
 
 func _ready():
 	if not next_level is PackedScene:
-		level_completed.next_level_button.text = "Victory Screen"
+		level_completed.next_level_button.text = "View Score"
 		next_level = load("res://victory_screen.tscn")
 		
 	RenderingServer.set_default_clear_color(Color.BLACK)
@@ -51,6 +51,6 @@ func show_level_completed():
 func _on_level_completed_retry():
 	retry()
 
-
 func _on_level_completed_next_level():
+	Events.append_level_time(level_time)
 	go_to_next_level()

@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://28dabf6l6lro"]
+
+[ext_resource type="PackedScene" uid="uid://dqf82iqtetkf3" path="res://world.tscn" id="1_xpo3x"]
+[ext_resource type="PackedScene" uid="uid://vc3d84u3aty8" path="res://spikes.tscn" id="2_chdn4"]
+[ext_resource type="PackedScene" uid="uid://ssqw8vwjwu30" path="res://heart.tscn" id="3_ykaam"]
+
+[node name="LevelFour" instance=ExtResource("1_xpo3x")]
+
+[node name="Player" parent="." index="0"]
+position = Vector2(24, 111)
+
+[node name="LevelTileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(458753, 65536, 3, 458754, 65536, 3, 458755, 65536, 3, 458756, 458752, 0, 524292, 196608, 1, 589828, 196608, 1, 655364, 262144, 3, 655365, 65536, 3, 655366, 65536, 3, 655367, 65536, 3, 655368, 65536, 3, 655369, 65536, 3, 589834, 196608, 1, 524298, 196608, 1, 655370, 458752, 3, 458762, 262144, 0, 458763, 65536, 3, 458764, 65536, 3, 458765, 65536, 3, 458766, 458752, 3, 393230, 196608, 1, 327694, 196608, 1, 262158, 458752, 0, 262157, 262144, 3, 196621, 196608, 1, 131085, 458752, 0, 131084, 65536, 3, 131083, 65536, 3, 131082, 262144, 3, 65546, 458752, 0, 65545, 65536, 3, 65544, 65536, 3, 65543, 65536, 3, 65542, 65536, 3, 65541, 65536, 3, 65540, 65536, 3, 65539, 65536, 3, 65538, 262144, 0, 131074, 458752, 3, 131073, 262144, 0, 196609, 196608, 1, 458752, 262144, 3, 393216, 196608, 1, 327680, 196608, 1, 262145, 458752, 3, 262144, 262144, 0)
+
+[node name="Spikes" parent="." index="4" instance=ExtResource("2_chdn4")]
+position = Vector2(80, 160)
+
+[node name="Spikes2" parent="." index="5" instance=ExtResource("2_chdn4")]
+position = Vector2(95, 160)
+
+[node name="Spikes3" parent="." index="6" instance=ExtResource("2_chdn4")]
+position = Vector2(111, 160)
+
+[node name="Spikes4" parent="." index="7" instance=ExtResource("2_chdn4")]
+position = Vector2(127, 160)
+
+[node name="Spikes5" parent="." index="8" instance=ExtResource("2_chdn4")]
+position = Vector2(144, 160)
+
+[node name="Heart" parent="." index="9" instance=ExtResource("3_ykaam")]
+position = Vector2(39, 105)
+
+[node name="Heart2" parent="." index="10" instance=ExtResource("3_ykaam")]
+position = Vector2(195, 105)

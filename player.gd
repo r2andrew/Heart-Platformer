@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var movement_data : PlayerMovementData
 
+signal has_just_wall_jumped
+
 var air_jump = false
 var just_wall_jumped = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -64,6 +66,7 @@ func apply_gravity(delta):
 
 func handle_wall_jump():
 	if Input.is_action_just_pressed("jump"):
+		has_just_wall_jumped.emit(last_known_wall_normal, position)
 		velocity.x = last_known_wall_normal.x * movement_data.speed
 		velocity.y = movement_data.jump_velocity * 0.8
 		just_wall_jumped = true

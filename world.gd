@@ -10,6 +10,9 @@ var start_level_msec = 0.0
 @onready var start_in_label = %StartInLabel
 @onready var animation_player = $AnimationPlayer
 @onready var level_time_label = %LevelTimeLabel
+@onready var player = $Player
+
+var particles = preload("res://particles.tscn")
 
 func _ready():
 	if not next_level is PackedScene:
@@ -21,7 +24,6 @@ func _ready():
 	start_in.visible = true
 	
 	get_tree().paused = true
-	print(Events.just_restarted_r)
 	if !Events.just_restarted_r:
 		LevelTransition.fade_from_black()
 		animation_player.play("countdown")
@@ -61,3 +63,24 @@ func _on_level_completed_retry():
 func _on_level_completed_next_level():
 	Events.append_level_time(level_time)
 	go_to_next_level()
+	
+	#generate walljump particles
+func _on_player_has_just_wall_jumped(last_known_wall_normal, player_position):
+	var new_particles = particles.instantiate()
+	
+	#player_position[0] = x
+	#player_position[1] = y
+	
+	var particle_spawn_pos = player_position
+	#set particle spawn y to be a bit higher than character
+	particle_spawn_pos[1] = particle_spawn_pos[1] - 5
+	
+	#if left wall, place particle spawn x to -20 (move a bit to left)
+	if (last_known_wall_normal[0] == 1):
+		particle_spawn_pos[0] = particle_spawn_pos[0] - 5
+	#if right wall, place particle spawn x to +20 (move a bit to right)
+	elif (last_known_wall_normal[0] == -1):
+		particle_spawn_pos[0] = particle_spawn_pos[0] + 5
+		
+	new_particles.position = particle_spawn_pos
+	add_child(new_particles)

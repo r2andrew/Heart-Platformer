@@ -21,9 +21,12 @@ func _ready():
 	start_in.visible = true
 	
 	get_tree().paused = true
-	LevelTransition.fade_from_black()
-	animation_player.play("countdown")
-	await animation_player.animation_finished
+	print(Events.just_restarted_r)
+	if !Events.just_restarted_r:
+		LevelTransition.fade_from_black()
+		animation_player.play("countdown")
+		await animation_player.animation_finished
+	else: Events.just_restarted_r = false
 	get_tree().paused = false
 	start_in.visible = false
 	start_level_msec = Time.get_ticks_msec()
@@ -31,6 +34,10 @@ func _ready():
 func _process(delta):
 	level_time = Time.get_ticks_msec() - start_level_msec
 	level_time_label.text = str(level_time / 1000.0)
+	
+	if Input.is_action_just_pressed("restart"):
+		Events.just_restarted_r = true
+		get_tree().change_scene_to_file(scene_file_path)
 	
 func retry():
 	await LevelTransition.fade_to_black()

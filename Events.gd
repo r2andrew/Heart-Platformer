@@ -1,6 +1,7 @@
 extends Node
 
 @export var times = []
+@export var just_restarted_r = false
 var levelIndex = 0
 
 signal level_completed

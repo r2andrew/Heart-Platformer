@@ -14,17 +14,8 @@ var last_known_wall_normal = Vector2.ZERO
 @onready var wall_jump_timer = $WallJumpTimer
 
 func _physics_process(delta):
-	
-	# TEST: change movement data
-	if Input.is_action_just_pressed("ui_page_down"):
-		movement_data = load("res://FasterMovementData.tres")
 		
 	just_wall_jumped = false
-	
-	# TEST: go to spawn
-	if Input.is_action_just_pressed("ui_page_up"):
-		global_position = starting_position
-		
 	
 	apply_gravity(delta)
 	
